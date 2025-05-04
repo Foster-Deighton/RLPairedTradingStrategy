@@ -1,0 +1,34 @@
+# Core libraries
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+pandas-ta
+
+# Statistical modeling
+statsmodels
+arch
+
+# RL + Gym
+stable-baselines3[extra]
+gym
+
+# ML frameworks (pick one or install both)
+torch
+# tensorflow  # Optional (decide if you want to use later)
+
+# Backtesting
+backtrader
+
+# Financial data APIs
+yfinance
+alpha_vantage
+quandl
+
+# Dev tools
+tqdm
+pyyaml
+pytest
+notebook
+ipykernel
