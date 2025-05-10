@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Constants
-SLIDING_WINDOW_LENGTH = 90  # days of history to retain for each ticker
+SLIDING_WINDOW_LENGTH = 1250  # days of history to retain for each ticker
 MISSING_THRESHOLD = 0.05    # max allowed fraction of missing data per ticker
 CHUNK_SIZE = 200            # maximum tickers per yfinance download call
 BUFFER_DAYS = 10            # extra days to ensure full window after gap-fill
