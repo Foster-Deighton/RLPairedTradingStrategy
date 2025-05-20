@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Environment
+.env
+.venv
+venv/
+ENV/
+
+# Project specific
+src/data/raw/*.csv
+src/rl/models/tb_logs/
+src/rl/models/*.zip
+src/rl/models/walkforward_summary.csv
+
+# Logs and databases
+*.log
+*.sqlite 
+
+
+# ignore live-trading credentials
+/src/live/credentials.env

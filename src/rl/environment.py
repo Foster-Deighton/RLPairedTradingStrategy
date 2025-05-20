@@ -16,7 +16,7 @@ class PairsEnv(gym.Env):
         self,
         prices_csv: str,
         pairs_csv: str,
-        window_length: int = 90,
+        window_length: int = 270,
         trading_cost: float = 0.0005,
     ):
         super().__init__()
@@ -50,14 +50,16 @@ class PairsEnv(gym.Env):
         # pick a random start so there's enough future data
         self.t = np.random.randint(self.window, len(self.dates)-1)
         self.prev_pos = np.zeros(len(self.pairs), dtype=int)
-        return self._get_obs()  # Return only observation for SB3 compatibility
+        obs = self._get_obs()
+        return obs, {}  # Return observation and empty info dict
 
     def _get_obs(self):
         obs = []
         for (a,b) in self.pairs:
             zs = self.zscores[(a,b)].iloc[self.t-self.window:self.t].values
             obs.append(zs)
-        return np.concatenate(obs).astype(np.float32)
+        # Return observation with shape (n_env, obs_dim)
+        return np.concatenate(obs).astype(np.float32).reshape(1, -1)
 
     def step(self, actions):
         # map {0,1,2}→{0,+1,-1}
