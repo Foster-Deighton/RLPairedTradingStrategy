@@ -47,10 +47,12 @@ MODEL_PATH    = MODEL_DIR / "final_model.zip"
 PAIRS_CSV     = Path(__file__).parent.parent / "pairing/pair_candidates.csv"
 WINDOW        = 90              # days of history for z-score
 TOTAL_CAPITAL = 100_000         # your starting notional
-MAX_LEVERAGE  = 0.05            # 5% of capital per pair
+MAX_LEVERAGE  = 0.02            # Reduced from 0.05 to 0.02 (2% of capital per pair)
 LOG_CSV       = Path(__file__).parent / "paper_trade_log.csv"
-STOP_LOSS_PCT = 0.02            # 2% stop loss per pair
-TAKE_PROFIT_PCT = 0.03          # 3% take profit per pair
+STOP_LOSS_PCT = 0.01            # Reduced from 0.02 to 0.01 (1% stop loss)
+TAKE_PROFIT_PCT = 0.015         # Reduced from 0.03 to 0.015 (1.5% take profit)
+MIN_ZSCORE = 1.5                # Minimum z-score threshold for trading
+MAX_POSITIONS = 3               # Maximum number of concurrent positions
 
 # Performance Tracking
 PERFORMANCE_WINDOW = 100        # Number of iterations to track for performance
@@ -384,24 +386,29 @@ def check_position_exits(ib, contracts, positions, price_data):
             logging.error(f"Error checking position exits for {sym}: {e}")
 
 def calculate_reward(positions, price_data, iteration_return_pct):
-    """Calculate reward based on iteration return percentage with extremely large rewards for gains."""
+    """Calculate reward based on iteration return percentage with more conservative rewards."""
     try:
+        # Log positions for debugging
+        logging.info(f"Current positions: {[(p.contract.symbol, p.position) for p in positions]}")
+        
         # Convert percentage to decimal
         iteration_return = iteration_return_pct / 100.0
         
-        # Make rewards extremely large and directly tied to iteration returns
+        # More conservative rewards
         if iteration_return > 0:
-            # Extremely large rewards for positive returns
-            reward = iteration_return * 10000  # 10000x scaling for positive returns
+            # Reduced reward multiplier for positive returns
+            reward = iteration_return * 5000  # Reduced from 10000 to 5000
         else:
-            # Moderate penalties for negative returns
-            reward = iteration_return * 2000  # 2000x scaling for negative returns
+            # Reduced penalty multiplier for negative returns
+            reward = iteration_return * 1000  # Reduced from 2000 to 1000
 
         # Add small exploration reward if no positions
         if not positions:
+            logging.info("No positions found - giving exploration reward of 0.1")
             reward = 0.1
+        else:
+            logging.info(f"Calculated reward based on return: {reward:.4f}")
 
-        logging.info(f"Iteration return: {iteration_return:.2%}, Reward: {reward:.4f}")
         return reward
         
     except Exception as e:
@@ -512,7 +519,7 @@ def update_model(obs, reward, next_obs, action):
 def run_iteration():
     global initial_equity, prev_equity, model, returns_history, learning_rate
 
-    logging.info("Starting iteration...")
+    logging.info("\nStarting iteration...")
 
     # 1) fetch net liquidation and available funds
     av = {v.tag: float(v.value) for v in ib.accountValues()
@@ -531,15 +538,11 @@ def run_iteration():
     # Update previous equity for next iteration
     prev_equity = net_liq
     
-    logging.info(f"Net Liquidation: {net_liq}")
-    logging.info(f"Available Funds: {available_funds}")
-    logging.info(f"Iteration Return: {iteration_return_pct:.2f}%")
-    logging.info(f"Cumulative Return: {cumulative_return_pct:.2f}%")
+    logging.info(f"Net Liq: ${net_liq:,.2f} | Iter: {iteration_return_pct:+.2f}% | Cum: {cumulative_return_pct:+.2f}%")
 
     # 2) fetch last WINDOW+1 daily bars for each symbol
     price_data = {}
     for sym, contract in contracts.items():
-        logging.info(f"Fetching data for {sym}...")
         bars = ib.reqHistoricalData(
             contract,
             endDateTime='',
@@ -550,7 +553,6 @@ def run_iteration():
         )
         df = util.df(bars)
         price_data[sym] = df.set_index('date')['close']
-        logging.info(f"Data fetched for {sym}.")
 
     # 3) build the z-score observation window
     obs_segments = []
@@ -566,6 +568,7 @@ def run_iteration():
         mu, sigma = spread.mean(), spread.std()
         zs = (spread - mu) / sigma
         obs_segments.append(zs[-WINDOW:])
+        logging.info(f"Z-score for {a}/{b}: {zs[-1]:.2f}")
     if not obs_segments:
         logging.warning("Insufficient data; skipping iteration.")
         return
@@ -582,7 +585,11 @@ def run_iteration():
     sigs = np.where(acts==1, +1, np.where(acts==2, -1, 0))
     sigs = sigs.flatten()
     sigs = [float(sig) for sig in sigs]
-    logging.info(f"Signals generated: {sigs}")
+    
+    # Only log non-zero signals
+    active_signals = [(pair, sig) for pair, sig in zip(pair_list, sigs) if sig != 0]
+    if active_signals:
+        logging.info("Active signals: " + ", ".join(f"{a}/{b}={sig:+.0f}" for (a,b), sig in active_signals))
 
     # Store current observation for next iteration
     next_obs = obs.copy()
@@ -590,10 +597,21 @@ def run_iteration():
     # 5) size and send orders
     total_notional = 0
     order_specs = []
+    active_positions = len([p for p in ib.positions() if p.position != 0])
+    
     for (a, b), sig in zip(pair_list, sigs):
-        # Scale position size by z-score magnitude
+        # Skip if we've reached max positions
+        if active_positions >= MAX_POSITIONS:
+            logging.info(f"Maximum positions ({MAX_POSITIONS}) reached, skipping new trades")
+            break
+            
+        # Scale position size by z-score magnitude with minimum threshold
         z_score = float(obs[0][-1])  # Get latest z-score
-        position_scale = min(abs(z_score) / 1.0, 1.0)  # More aggressive scaling (changed from 2.0)
+        if abs(z_score) < MIN_ZSCORE:
+            logging.info(f"Z-score {z_score:.2f} below minimum threshold {MIN_ZSCORE}, skipping trade")
+            continue
+            
+        position_scale = min(abs(z_score) / MIN_ZSCORE, 1.0)
         target_notional = float(TOTAL_CAPITAL * MAX_LEVERAGE * sig * position_scale)
         val_a = float(0.5 * target_notional)
         val_b = float(-0.5 * target_notional)
