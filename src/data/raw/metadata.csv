@@ -1,519 +1,1000 @@
-Ticker,Industry,Sector,MarketCap
-MSFT,Software - Infrastructure,Technology,3260878422016
-AAPL,Consumer Electronics,Technology,2965204369408
-NVDA,Semiconductors,Technology,2846259937280
-AMZN,Internet Retail,Consumer Cyclical,2049602093056
-GOOG,Internet Content & Information,Communication Services,1863783415808
-GOOGL,Internet Content & Information,Communication Services,1861411536896
-META,Internet Content & Information,Communication Services,1489715462144
-AVGO,Semiconductors,Technology,978945966080
-TSLA,Auto Manufacturers,Consumer Cyclical,960683573248
-WMT,Discount Stores,Consumer Defensive,773846073344
-JPM,Banks - Diversified,Financial Services,703332089856
-V,Credit Services,Financial Services,675350315008
-LLY,Drug Manufacturers - General,Healthcare,659449970688
-MA,Credit Services,Financial Services,516371742720
-NFLX,Entertainment,Communication Services,485244567552
-XOM,Oil & Gas Integrated,Energy,462467465216
-COST,Discount Stores,Consumer Defensive,447272419328
-ORCL,Software - Infrastructure,Technology,421587910656
-JNJ,Drug Manufacturers - General,Healthcare,371064111104
-PG,Household & Personal Products,Consumer Defensive,369640177664
-HD,Home Improvement Retail,Consumer Cyclical,360507604992
-UNH,Healthcare Plans,Healthcare,345293783040
-ABBV,Drug Manufacturers - General,Healthcare,326553698304
-BAC,Banks - Diversified,Financial Services,314757283840
-KO,Beverages - Non-Alcoholic,Consumer Defensive,303537094656
-ASML,Semiconductor Equipment & Materials,Technology,277681766400
-TMUS,Telecom Services,Communication Services,276834058240
-PLTR,Software - Infrastructure,Technology,276817444864
-CRM,Software - Application,Technology,264258338816
-PM,Tobacco,Consumer Defensive,264141422592
-CVX,Oil & Gas Integrated,Energy,241903255552
-CSCO,Communication Equipment,Technology,237782384640
-WFC,Banks - Diversified,Financial Services,235765334016
-ABT,Medical Devices,Healthcare,231816298496
-IBM,Information Technology Services,Technology,231605731328
-GE,Aerospace & Defense,Industrials,229231198208
-MCD,Restaurants,Consumer Cyclical,224303775744
-LIN,Specialty Chemicals,Basic Materials,213077934080
-AZN,Drug Manufacturers - General,Healthcare,212590084096
-NOW,Software - Application,Technology,202851844096
-T,Telecom Services,Communication Services,200325496832
-AXP,Credit Services,Financial Services,199324581888
-MS,Capital Markets,Financial Services,195245735936
-ACN,Information Technology Services,Technology,192753401856
-ISRG,Medical Instruments & Supplies,Healthcare,192294830080
-DIS,Entertainment,Communication Services,191517278208
-MRK,Drug Manufacturers - General,Healthcare,190762958848
-VZ,Telecom Services,Communication Services,183870668800
-INTU,Software - Application,Technology,182799990784
-PEP,Beverages - Non-Alcoholic,Consumer Defensive,178843664384
-GS,Capital Markets,Financial Services,174009516032
-UBER,Software - Application,Technology,173177241600
-RTX,Aerospace & Defense,Industrials,171896684544
-BX,Asset Management,Financial Services,169112125440
-PGR,Insurance - Property & Casualty,Financial Services,166786596864
-AMD,Semiconductors,Technology,166744768512
-BKNG,Travel Services,Consumer Cyclical,165061967872
-ADBE,Software - Application,Technology,163353935872
-QCOM,Semiconductors,Technology,159407636480
-TXN,Semiconductors,Technology,156502474752
-SPGI,Financial Data & Stock Exchanges,Financial Services,155712159744
-PDD,Internet Retail,Consumer Cyclical,155664629760
-SCHW,Capital Markets,Financial Services,153390759936
-CAT,Farm & Heavy Construction Machinery,Industrials,153143967744
-TMO,Diagnostics & Research,Healthcare,152179163136
-BSX,Medical Devices,Healthcare,152176230400
-BA,Aerospace & Defense,Industrials,146918080512
-SYK,Medical Devices,Healthcare,145574297600
-NEE,Utilities - Regulated Electric,Utilities,144742268928
-BLK,Asset Management,Financial Services,143153512448
-TJX,Apparel Retail,Consumer Cyclical,143022374912
-AMGN,Drug Manufacturers - General,Healthcare,142954512384
-HON,Conglomerates,Industrials,137033039872
-DHR,Diagnostics & Research,Healthcare,135784071168
-DE,Farm & Heavy Construction Machinery,Industrials,133698543616
-C,Banks - Diversified,Financial Services,133447155712
-UNP,Railroads,Industrials,129246003200
-CMCSA,Telecom Services,Communication Services,127879225344
-PFE,Drug Manufacturers - General,Healthcare,126670045184
-AMAT,Semiconductor Equipment & Materials,Technology,126423949312
-ADP,Software - Application,Technology,124910624768
-LOW,Home Improvement Retail,Consumer Cyclical,124400246784
-PANW,Software - Infrastructure,Technology,123766341632
-ARM,Semiconductors,Technology,122053206016
-ETN,Specialty Industrial Machinery,Industrials,121252126720
-GILD,Drug Manufacturers - General,Healthcare,120652947456
-CB,Insurance - Property & Casualty,Financial Services,116162461696
-MSTR,Software - Application,Technology,113743855616
-COP,Oil & Gas E&P,Energy,111992815616
-MMC,Insurance Brokers,Financial Services,111775350784
-APP,Software - Application,Technology,111165784064
-LMT,Aerospace & Defense,Industrials,110943838208
-VRTX,Biotechnology,Healthcare,109136150528
-GEV,Specialty Industrial Machinery,Industrials,108972032000
-KKR,Asset Management,Financial Services,108966469632
-ANET,Computer Hardware,Technology,108662194176
-MDT,Medical Devices,Healthcare,107066449920
-AMT,REIT - Specialty,Real Estate,102976315392
-ADI,Semiconductors,Technology,102919979008
-CME,Financial Data & Stock Exchanges,Financial Services,102468083712
-ICE,Financial Data & Stock Exchanges,Financial Services,102294724608
-CRWD,Software - Infrastructure,Technology,102262317056
-FI,Information Technology Services,Technology,102054666240
-MO,Tobacco,Consumer Defensive,100106870784
-SO,Utilities - Regulated Electric,Utilities,99402162176
-PLD,REIT - Industrial,Real Estate,99204571136
-APH,Electronic Components,Technology,98008760320
-WELL,REIT - Healthcare Facilities,Real Estate,97556553728
-LRCX,Semiconductor Equipment & Materials,Technology,96394485760
-MU,Semiconductors,Technology,95954567168
-BMY,Drug Manufacturers - General,Healthcare,94529462272
-WM,Waste Management,Industrials,93660463104
-DUK,Utilities - Regulated Electric,Utilities,93527343104
-INTC,Semiconductors,Technology,93434036224
-KLAC,Semiconductor Equipment & Materials,Technology,92727394304
-ELV,Healthcare Plans,Healthcare,91408785408
-SBUX,Restaurants,Consumer Cyclical,91252924416
-CI,Healthcare Plans,Healthcare,89081503744
-SHW,Specialty Chemicals,Basic Materials,88176459776
-MCK,Medical Distribution,Healthcare,86908567552
-CTAS,Specialty Business Services,Industrials,86709223424
-AJG,Insurance Brokers,Financial Services,86591995904
-NKE,Footwear & Accessories,Consumer Cyclical,86050217984
-MDLZ,Confectioners,Consumer Defensive,85937201152
-HCA,Medical Care Facilities,Healthcare,85091024896
-CEG,Utilities - Renewable,Utilities,85051965440
-CVS,Healthcare Plans,Healthcare,84718395392
-MCO,Financial Data & Stock Exchanges,Financial Services,84691419136
-EQIX,REIT - Specialty,Real Estate,84553768960
-CDNS,Software - Application,Technology,83490775040
-UPS,Integrated Freight & Logistics,Industrials,81269850112
-ABNB,Travel Services,Consumer Cyclical,78410735616
-DASH,Internet Content & Information,Communication Services,77765320704
-RSG,Waste Management,Industrials,77680500736
-ORLY,Auto Parts,Consumer Cyclical,77500727296
-TDG,Aerospace & Defense,Industrials,77144948736
-MMM,Conglomerates,Industrials,76744613888
-AON,Insurance Brokers,Financial Services,76511862784
-APO,Asset Management,Financial Services,75700101120
-FTNT,Software - Infrastructure,Technology,74913447936
-SNPS,Software - Infrastructure,Technology,74666000384
-GD,Aerospace & Defense,Industrials,72885616640
-CL,Household & Personal Products,Consumer Defensive,72783814656
-COF,Credit Services,Financial Services,71904378880
-ECL,Specialty Chemicals,Basic Materials,71665549312
-ITW,Specialty Industrial Machinery,Industrials,71141261312
-ZTS,Drug Manufacturers - Specialty & Generic,Healthcare,70908280832
-MAR,Lodging,Consumer Cyclical,70656950272
-WMB,Oil & Gas Midstream,Energy,70403440640
-NOC,Aerospace & Defense,Industrials,69462532096
-WDAY,Software - Application,Technology,69325979648
-PYPL,Credit Services,Financial Services,68330168320
-MSI,Communication Equipment,Technology,67851354112
-CMG,Restaurants,Consumer Cyclical,66990739456
-DELL,Computer Hardware,Technology,66929934336
-PNC,Banks - Regional,Financial Services,65838174208
-USB,Banks - Regional,Financial Services,65468420096
-HWM,Aerospace & Defense,Industrials,63542325248
-EMR,Specialty Industrial Machinery,Industrials,63466950656
-RCL,Travel Services,Consumer Cyclical,63344082944
-SPG,REIT - Retail,Real Estate,61517086720
-ADSK,Software - Application,Technology,61504909312
-BK,Banks - Diversified,Financial Services,61462937600
-ROP,Software - Application,Technology,61335154688
-AZO,Auto Parts,Consumer Cyclical,61289439232
-CARR,Building Products & Equipment,Industrials,61246230528
-TRV,Insurance - Property & Casualty,Financial Services,61116985344
-KMI,Oil & Gas Midstream,Energy,60703846400
-JCI,Building Products & Equipment,Industrials,60679974912
-EOG,Oil & Gas E&P,Energy,60647854080
-APD,Specialty Chemicals,Basic Materials,60338356224
-NEM,Gold,Basic Materials,60079734784
-CPRT,Specialty Business Services,Industrials,59434041344
-MNST,Beverages - Non-Alcoholic,Consumer Defensive,59362697216
-HLT,Lodging,Consumer Cyclical,57763475456
-AFL,Insurance - Life,Financial Services,57487982592
-DLR,REIT - Specialty,Real Estate,57156997120
-REGN,Biotechnology,Healthcare,56981770240
-CHTR,Telecom Services,Communication Services,56388431872
-AEP,Utilities - Regulated Electric,Utilities,55919534080
-COR,Medical Distribution,Healthcare,54820777984
-PAYX,Software - Application,Technology,54622965760
-TEAM,Software - Application,Technology,54475247616
-CSX,Railroads,Industrials,53989527552
-ALL,Insurance - Property & Casualty,Financial Services,53662720000
-PSA,REIT - Industrial,Real Estate,53343309824
-AXON,Aerospace & Defense,Industrials,53294030848
-FCX,Copper,Basic Materials,53004001280
-MET,Insurance - Life,Financial Services,52260548608
-FDX,Integrated Freight & Logistics,Industrials,52191850496
-MRVL,Semiconductors,Technology,51527520256
-OKE,Oil & Gas Midstream,Energy,51407216640
-O,REIT - Retail,Real Estate,51195604992
-TFC,Banks - Regional,Financial Services,51085152256
-FICO,Software - Application,Technology,50830823424
-NSC,Railroads,Industrials,50386735104
-GWW,Industrial Distribution,Industrials,49819537408
-SRE,Utilities - Diversified,Utilities,49167278080
-NXPI,Semiconductors,Technology,48474451968
-PWR,Engineering & Construction,Industrials,48296574976
-BDX,Medical Instruments & Supplies,Healthcare,47926423552
-DFS,Credit Services,Financial Services,47831687168
-PCAR,Farm & Heavy Construction Machinery,Industrials,47592783872
-KR,Grocery Stores,Consumer Defensive,47498452992
-AIG,Insurance - Diversified,Financial Services,47495356416
-D,Utilities - Regulated Electric,Utilities,46980255744
-KVUE,Household & Personal Products,Consumer Defensive,46892785664
-AMP,Asset Management,Financial Services,46866710528
-ROST,Apparel Retail,Consumer Cyclical,46786498560
-SLB,Oil & Gas Equipment & Services,Energy,46675668992
-MPC,Oil & Gas Refining & Marketing,Energy,46355521536
-CTVA,Agricultural Inputs,Basic Materials,46301585408
-VST,Utilities - Independent Power Producers,Utilities,46176313344
-CCI,REIT - Specialty,Real Estate,45720567808
-GM,Auto Manufacturers,Consumer Cyclical,45668163584
-EXC,Utilities - Regulated Electric,Utilities,45641302016
-KDP,Beverages - Non-Alcoholic,Consumer Defensive,45553692672
-NDAQ,Financial Data & Stock Exchanges,Financial Services,45476200448
-TEL,Electronic Components,Technology,45336109056
-PSX,Oil & Gas Refining & Marketing,Energy,45192908800
-FAST,Industrial Distribution,Industrials,45086609408
-KMB,Household & Personal Products,Consumer Defensive,44148121600
-TGT,Discount Stores,Consumer Defensive,43800305664
-URI,Rental & Leasing Services,Industrials,43705327616
-VRSK,Consulting Services,Industrials,43312975872
-EW,Medical Devices,Healthcare,43220688896
-MSCI,Financial Data & Stock Exchanges,Financial Services,43061882880
-CMI,Specialty Industrial Machinery,Industrials,42250838016
-F,Auto Manufacturers,Consumer Cyclical,41475416064
-OXY,Oil & Gas E&P,Energy,41387163648
-FIS,Information Technology Services,Technology,41159442432
-CCEP,Beverages - Non-Alcoholic,Consumer Defensive,41076113408
-LHX,Aerospace & Defense,Industrials,41014083584
-YUM,Restaurants,Consumer Cyclical,40978206720
-HES,Oil & Gas E&P,Energy,40943366144
-XEL,Utilities - Regulated Electric,Utilities,40725094400
-FANG,Oil & Gas E&P,Energy,40551104512
-TTWO,Electronic Gaming & Multimedia,Communication Services,39985168384
-EA,Electronic Gaming & Multimedia,Communication Services,39952740352
-AME,Specialty Industrial Machinery,Industrials,39653470208
-IDXX,Diagnostics & Research,Healthcare,39543451648
-PEG,Utilities - Regulated Electric,Utilities,39390904320
-CTSH,Information Technology Services,Technology,39026216960
-ED,Utilities - Regulated Electric,Utilities,38796673024
-GLW,Electronic Components,Technology,38609715200
-VLO,Oil & Gas Refining & Marketing,Energy,38502416384
-OTIS,Specialty Industrial Machinery,Industrials,38283669504
-CBRE,Real Estate Services,Real Estate,37737111552
-PCG,Utilities - Regulated Electric,Utilities,37646258176
-DHI,Residential Construction,Consumer Cyclical,37485297664
-DDOG,Software - Application,Technology,37256679424
-GRMN,Scientific & Technical Instruments,Technology,36858122240
-PRU,Insurance - Life,Financial Services,36671586304
-HIG,Insurance - Property & Casualty,Financial Services,36228812800
-BKR,Oil & Gas Equipment & Services,Energy,36152471552
-ZS,Software - Infrastructure,Technology,36060205056
-RMD,Medical Instruments & Supplies,Healthcare,35929481216
-ETR,Utilities - Regulated Electric,Utilities,35719782400
-VMC,Building Materials,Basic Materials,35619201024
-ACGL,Insurance - Diversified,Financial Services,35509223424
-CAH,Medical Distribution,Healthcare,35376705536
-TTD,Software - Application,Technology,34921062400
-HSY,Confectioners,Consumer Defensive,34625024000
-TRGP,Oil & Gas Midstream,Energy,34613669888
-WEC,Utilities - Regulated Electric,Utilities,34345203712
-SYY,Food Distribution,Consumer Defensive,34296203264
-STZ,Beverages - Brewers,Consumer Defensive,33841395712
-VICI,REIT - Diversified,Real Estate,33666781184
-LULU,Apparel Retail,Consumer Cyclical,33616041984
-EFX,Consulting Services,Industrials,33522552832
-ODFL,Trucking,Industrials,33448519680
-ROK,Specialty Industrial Machinery,Industrials,33333919744
-EQT,Oil & Gas E&P,Energy,33295577088
-IT,Information Technology Services,Technology,33288181760
-KHC,Packaged Foods,Consumer Defensive,33221965824
-DXCM,Medical Devices,Healthcare,33199699968
-WAB,Railroads,Industrials,32962289664
-EXR,REIT - Industrial,Real Estate,32884676608
-MLM,Building Materials,Basic Materials,32665643008
-EBAY,Internet Retail,Consumer Cyclical,32033267712
-IR,Specialty Industrial Machinery,Industrials,32002684928
-GEHC,Health Information Services,Healthcare,31992426496
-BRO,Insurance Brokers,Financial Services,31905202176
-LYV,Entertainment,Communication Services,31641513984
-DAL,Airlines,Industrials,31563845632
-CSGP,Real Estate Services,Real Estate,31460114432
-CNC,Healthcare Plans,Healthcare,31244492800
-WTW,Insurance Brokers,Financial Services,30644230144
-MPWR,Semiconductors,Technology,30536427520
-A,Diagnostics & Research,Healthcare,30486065152
-HUM,Healthcare Plans,Healthcare,30116524032
-TPL,Oil & Gas E&P,Energy,29912418304
-XYL,Specialty Industrial Machinery,Industrials,29895671808
-GIS,Packaged Foods,Consumer Defensive,29844256768
-VTR,REIT - Healthcare Facilities,Real Estate,29790181376
-MCHP,Semiconductors,Technology,29757526016
-RJF,Asset Management,Financial Services,29524645888
-ANSS,Software - Application,Technology,29341116416
-AVB,REIT - Residential,Real Estate,29261099008
-AWK,Utilities - Regulated Water,Utilities,28655063040
-IRM,REIT - Specialty,Real Estate,28639920128
-K,Packaged Foods,Consumer Defensive,28615530496
-LEN,Residential Construction,Consumer Cyclical,28507897856
-MTB,Banks - Regional,Financial Services,28435408896
-DTE,Utilities - Regulated Electric,Utilities,28247076864
-LVS,Resorts & Casinos,Consumer Cyclical,28116727808
-DD,Specialty Chemicals,Basic Materials,27943178240
-BR,Information Technology Services,Technology,27838730240
-WRB,Insurance - Property & Casualty,Financial Services,27499515904
-ROL,Personal Services,Consumer Cyclical,27489122304
-EQR,REIT - Residential,Real Estate,27389065216
-CCL,Travel Services,Consumer Cyclical,27354624000
-TSCO,Specialty Retail,Consumer Cyclical,27271849984
-STT,Asset Management,Financial Services,26752923648
-EXE,Oil & Gas E&P,Energy,26744080384
-KEYS,Scientific & Technical Instruments,Technology,26633631744
-NUE,Steel,Basic Materials,26562820096
-VRSN,Software - Infrastructure,Technology,26424399872
-AEE,Utilities - Regulated Electric,Utilities,26325176320
-PPL,Utilities - Regulated Electric,Utilities,26251264000
-GDDY,Software - Infrastructure,Technology,26018310144
-IQV,Diagnostics & Research,Healthcare,25775271936
-SBAC,REIT - Specialty,Real Estate,25753491456
-ATO,Utilities - Regulated Gas,Utilities,25374259200
-UAL,Airlines,Industrials,25236457472
-HPQ,Computer Hardware,Technology,24943919104
-FITB,Banks - Regional,Financial Services,24930824192
-PPG,Specialty Chemicals,Basic Materials,24840144896
-FE,Utilities - Regulated Electric,Utilities,24534898688
-CNP,Utilities - Regulated Electric,Utilities,24503410688
-NRG,Utilities - Independent Power Producers,Utilities,24303585280
-CBOE,Financial Data & Stock Exchanges,Financial Services,24263049216
-TYL,Software - Application,Technology,24159940608
-DOV,Specialty Industrial Machinery,Industrials,24152240128
-VLTO,Pollution & Treatment Controls,Industrials,24057387008
-FTV,Scientific & Technical Instruments,Technology,23968477184
-CDW,Information Technology Services,Technology,23578386432
-IP,Packaging & Containers,Consumer Cyclical,23369070592
-ADM,Farm Products,Consumer Defensive,23316236288
-DRI,Restaurants,Consumer Cyclical,23219128320
-ES,Utilities - Regulated Electric,Utilities,23145254912
-CINF,Insurance - Property & Casualty,Financial Services,23101730816
-CPAY,Software - Infrastructure,Technology,23065335808
-TDY,Scientific & Technical Instruments,Technology,22724886528
-CHD,Household & Personal Products,Consumer Defensive,22551584768
-MTD,Diagnostics & Research,Healthcare,22465789952
-WBD,Entertainment,Communication Services,22437728256
-STE,Medical Devices,Healthcare,22246928384
-HPE,Communication Equipment,Technology,22186364928
-HBAN,Banks - Regional,Financial Services,22172647424
-FOXA,Entertainment,Communication Services,21967241216
-EL,Household & Personal Products,Consumer Defensive,21941274624
-FOX,Entertainment,Communication Services,21934807040
-SW,Packaging & Containers,Consumer Cyclical,21870921728
-PODD,Medical Devices,Healthcare,21859301376
-CMS,Utilities - Regulated Electric,Utilities,21620682752
-EIX,Utilities - Regulated Electric,Utilities,21619888128
-INVH,REIT - Residential,Real Estate,21312237568
-SYF,Credit Services,Financial Services,21175949312
-DVN,Oil & Gas E&P,Energy,20927492096
-NVR,Residential Construction,Consumer Cyclical,20905938944
-AMCR,Packaging & Containers,Consumer Cyclical,20897019904
-DOW,Chemicals,Basic Materials,20838291456
-LH,Diagnostics & Research,Healthcare,20567601152
-PHM,Residential Construction,Consumer Cyclical,20537755648
-WAT,Diagnostics & Research,Healthcare,20474701824
-TROW,Asset Management,Financial Services,20432105472
-MKC,Packaged Foods,Consumer Defensive,20418480128
-LII,Building Products & Equipment,Industrials,20357629952
-STX,Computer Hardware,Technology,20311287808
-GFS,Semiconductors,Technology,20181223424
-DG,Discount Stores,Consumer Defensive,20160344064
-LDOS,Information Technology Services,Technology,20041547776
-EXPE,Travel Services,Consumer Cyclical,19984332800
-WSM,Specialty Retail,Consumer Cyclical,19799728128
-DGX,Diagnostics & Research,Healthcare,19754930176
-GPN,Specialty Business Services,Industrials,19632340992
-MAA,REIT - Residential,Real Estate,19581636608
-NTRS,Asset Management,Financial Services,19568678912
-STLD,Steel,Basic Materials,19563055104
-PTC,Software - Application,Technology,19553923072
-ESS,REIT - Residential,Real Estate,19519631360
-NTAP,Computer Hardware,Technology,19285929984
-SMCI,Computer Hardware,Technology,19091279872
-HUBB,Electrical Equipment & Parts,Industrials,19039074304
-RF,Banks - Regional,Financial Services,19021359104
-WY,REIT - Specialty,Real Estate,19019835392
-ZBH,Medical Devices,Healthcare,18837108736
-IFF,Specialty Chemicals,Basic Materials,18782660608
-NI,Utilities - Regulated Gas,Utilities,18630426624
-L,Insurance - Property & Casualty,Financial Services,18537213952
-ERIE,Insurance Brokers,Financial Services,18468792320
-DECK,Footwear & Accessories,Consumer Cyclical,18375278592
-LYB,Specialty Chemicals,Basic Materials,18297303040
-DLTR,Discount Stores,Consumer Defensive,17961349120
-CTRA,Oil & Gas E&P,Energy,17852674048
-GEN,Software - Infrastructure,Technology,17817262080
-LUV,Airlines,Industrials,17768421376
-ULTA,Specialty Retail,Consumer Cyclical,17705652224
-PFG,Asset Management,Financial Services,17688670208
-HAL,Oil & Gas Equipment & Services,Energy,17503797248
-MOH,Healthcare Plans,Healthcare,17463240704
-BIIB,Drug Manufacturers - General,Healthcare,17315213312
-FDS,Financial Data & Stock Exchanges,Financial Services,17251510272
-ON,Semiconductors,Technology,17124926464
-KEY,Banks - Regional,Financial Services,16976109568
-CFG,Banks - Regional,Financial Services,16964347904
-NWS,Entertainment,Communication Services,16751630336
-NWSA,Entertainment,Communication Services,16726369280
-CLX,Household & Personal Products,Consumer Defensive,16609573888
-JBL,Electronic Components,Technology,16528983040
-SNA,Tools & Accessories,Industrials,16506177536
-COO,Medical Instruments & Supplies,Healthcare,16450460672
-DPZ,Restaurants,Consumer Cyclical,16398254080
-PKG,Packaging & Containers,Consumer Cyclical,16314755072
-GPC,Auto Parts,Consumer Cyclical,16296721408
-TRMB,Scientific & Technical Instruments,Technology,16252206080
-TPR,Luxury Goods,Consumer Cyclical,16149240832
-HRL,Packaged Foods,Consumer Defensive,16062958592
-UDR,REIT - Residential,Real Estate,15943160832
-LNT,Utilities - Regulated Electric,Utilities,15864475648
-BAX,Medical Instruments & Supplies,Healthcare,15857107968
-FFIV,Software - Infrastructure,Technology,15510552576
-WDC,Computer Hardware,Technology,15385520128
-PNR,Specialty Industrial Machinery,Industrials,15376694272
-RL,Apparel Manufacturing,Consumer Cyclical,15363227648
-EVRG,Utilities - Regulated Electric,Utilities,15316563968
-WST,Medical Instruments & Supplies,Healthcare,15307380736
-FSLR,Solar,Technology,15087085568
-EXPD,Integrated Freight & Logistics,Industrials,14917569536
-OMC,Advertising Agencies,Communication Services,14873591808
-EG,Insurance - Reinsurance,Financial Services,14803777536
-J,Engineering & Construction,Industrials,14750350336
-BALL,Packaging & Containers,Consumer Cyclical,14720417792
-BBY,Specialty Retail,Consumer Cyclical,14574580736
-MDB,Software - Infrastructure,Technology,14495250432
-PAYC,Software - Application,Technology,14296224768
-KIM,REIT - Retail,Real Estate,14084646912
-IEX,Specialty Industrial Machinery,Industrials,13860167680
-CF,Agricultural Inputs,Basic Materials,13718546432
-ZBRA,Communication Equipment,Technology,13563350016
-APTV,Auto Parts,Consumer Cyclical,13492728832
-AVY,Packaging & Containers,Consumer Cyclical,13461837824
-JBHT,Integrated Freight & Logistics,Industrials,13443844096
-ALGN,Medical Instruments & Supplies,Healthcare,13315490816
-REG,REIT - Retail,Real Estate,13218252800
-JKHY,Information Technology Services,Technology,13191567360
-MAS,Building Products & Equipment,Industrials,13099497472
-TXT,Aerospace & Defense,Industrials,13072830464
-TKO,Entertainment,Communication Services,13020879872
-ARE,REIT - Office,Real Estate,12813294592
-HOLX,Medical Instruments & Supplies,Healthcare,12646453248
-CPT,REIT - Residential,Real Estate,12604747776
-TER,Semiconductor Equipment & Materials,Technology,12419716096
-BLDR,Building Products & Equipment,Industrials,12236221440
-ALLE,Security & Protection Services,Industrials,12206093312
-DOC,REIT - Healthcare Facilities,Real Estate,12204750848
-JNPR,Communication Equipment,Technology,12150968320
-SOLV,Medical Instruments & Supplies,Healthcare,12150001664
-SJM,Packaged Foods,Consumer Defensive,11869752320
-UHS,Medical Care Facilities,Healthcare,11852547072
-INCY,Biotechnology,Healthcare,11416758272
-POOL,Industrial Distribution,Industrials,11350743040
-BXP,REIT - Office,Real Estate,11348668416
-AKAM,Software - Infrastructure,Technology,11141269504
-TAP,Beverages - Brewers,Consumer Defensive,11081586688
-DVA,Medical Care Facilities,Healthcare,11049867264
-CAG,Packaged Foods,Consumer Defensive,11022287872
-BEN,Asset Management,Financial Services,11004409856
-NDSN,Specialty Industrial Machinery,Industrials,10962331648
-PNW,Utilities - Regulated Electric,Utilities,10938142720
-RVTY,Diagnostics & Research,Healthcare,10755637248
-CHRW,Integrated Freight & Logistics,Industrials,10563496960
-CPB,Packaged Foods,Consumer Defensive,10531788800
-SWKS,Semiconductors,Technology,10475351040
-VTRS,Drug Manufacturers - Specialty & Generic,Healthcare,10399992832
-HST,REIT - Hotel & Motel,Real Estate,10384964608
-MOS,Agricultural Inputs,Basic Materials,10363904000
-BG,Farm Products,Consumer Defensive,10362424320
-LKQ,Auto Parts,Consumer Cyclical,10351734784
-GL,Insurance - Life,Financial Services,10150627328
-KMX,Auto & Truck Dealerships,Consumer Cyclical,10092411904
-EPAM,Information Technology Services,Technology,10028465152
-AIZ,Insurance - Property & Casualty,Financial Services,9955356672
-AOS,Specialty Industrial Machinery,Industrials,9704623104
-WBA,Pharmaceutical Retailers,Healthcare,9702360064
-SWK,Tools & Accessories,Industrials,9695862784
-MRNA,Biotechnology,Healthcare,9378493440
-IPG,Advertising Agencies,Communication Services,9287743488
-WYNN,Resorts & Casinos,Consumer Cyclical,9193433088
-HII,Aerospace & Defense,Industrials,9088953344
-DAY,Software - Application,Technology,9066851328
-EMN,Specialty Chemicals,Basic Materials,8948150272
-MGM,Resorts & Casinos,Consumer Cyclical,8866614272
-HAS,Leisure,Consumer Cyclical,8620735488
-MKTX,Capital Markets,Financial Services,8596871168
-PARA,Entertainment,Communication Services,8483345408
-HSIC,Medical Distribution,Healthcare,8354860544
-FRT,REIT - Retail,Real Estate,8077315584
-AES,Utilities - Diversified,Utilities,7916583936
-NCLH,Travel Services,Consumer Cyclical,7908484608
-TECH,Biotechnology,Healthcare,7894914560
-LW,Packaged Foods,Consumer Defensive,7172926464
-GNRC,Specialty Industrial Machinery,Industrials,7154190848
-CRL,Diagnostics & Research,Healthcare,6816767488
-ALB,Specialty Chemicals,Basic Materials,6816101888
-MTCH,Internet Content & Information,Communication Services,6665215488
-ENPH,Solar,Technology,6662035456
-MHK,"Furnishings, Fixtures & Appliances",Consumer Cyclical,6647000576
-IVZ,Asset Management,Financial Services,6637255680
-APA,Oil & Gas E&P,Energy,6047022080
-CZR,Resorts & Casinos,Consumer Cyclical,5829343232
-PH,Unknown,Unknown,0
-MELI,Unknown,Unknown,0
-TT,Unknown,Unknown,0
-BRK.B,Unknown,Unknown,0
-TSN,Unknown,Unknown,0
-BF.B,Unknown,Unknown,0
+Ticker,MarketCap,AssetType
+CMCSA,130436816896,Equity
+MCY,3386735872,Equity
+VTRS,10017358848,Equity
+CPT,12295985152,Equity
+CPB,10212733952,Equity
+AJG,87774961664,Equity
+VRSN,25335158784,Equity
+PH,85533319168,Equity
+AWI,6779791872,Equity
+ACT,5343850496,Equity
+MOS,11466314752,Equity
+CALX,3058221824,Equity
+HRL,16563381248,Equity
+TDC,2100331904,Equity
+HSY,32146161664,Equity
+BKU,2585785344,Equity
+MRCY,2905586944,Equity
+GPN,18483664896,Equity
+TEL,47745552384,Equity
+SJW,1875273856,Equity
+WELL,98373992448,Equity
+RDNT,4203185920,Equity
+SHW,89705127936,Equity
+RUSHA,3923113216,Equity
+DAL,31834726400,Equity
+GEV,129423048704,Equity
+ASTH,1130404480,Equity
+WS,1310373504,Equity
+APD,61345366016,Equity
+NHC,1595214848,Equity
+ARE,12044791808,Equity
+ORCL,452953210880,Equity
+CAH,36803989504,Equity
+CENX,1504046080,Equity
+STC,1692194816,Equity
+MTD,23976493056,Equity
+OTTR,3239838720,Equity
+PTGX,2846833152,Equity
+LULU,38266155008,Equity
+ROP,61709312000,Equity
+SKYW,4082735872,Equity
+GSHD,4124922368,Equity
+ROK,35461578752,Equity
+FDP,1663820544,Equity
+CTRE,5493806592,Equity
+VICR,1908690304,Equity
+ZTS,73846644736,Equity
+PMT,1080671616,Equity
+WABC,1275000064,Equity
+HOLX,14081574912,Equity
+IOSP,2176387072,Equity
+MOH,16542381056,Equity
+FFBC,2329261824,Equity
+ASO,2730251776,Equity
+BK,64013455360,Equity
+TDW,2053761152,Equity
+AMZN,2180290052096,Equity
+AVA,3105726720,Equity
+TDG,82080915456,Equity
+IVZ,6561170944,Equity
+MRTN,1076527872,Equity
+STEP,7174757888,Equity
+ALGT,1032668352,Equity
+BRO,31953291264,Equity
+BL,3421996800,Equity
+PLD,99288080384,Equity
+CCL,31339268096,Equity
+KMB,47615594496,Equity
+BSX,154942799872,Equity
+PKG,17457920000,Equity
+DEI,2911260416,Equity
+ADEA,1386630016,Equity
+CON,2749930240,Equity
+PHM,19757793280,Equity
+GNW,2892578304,Equity
+HCA,91700789248,Equity
+KEYS,27991136256,Equity
+SRE,50999689216,Equity
+DEA,1096923904,Equity
+MSFT,3414137241600,Equity
+BOOT,4928097792,Equity
+NXRT,1736274816,Equity
+LXP,2498703616,Equity
+NVDA,3298057256960,Equity
+GEO,3853010432,Equity
+CTAS,91239718912,Equity
+OTIS,38149480448,Equity
+CWT,2789667840,Equity
+MAC,4133439232,Equity
+ABNB,79034122240,Equity
+GDDY,25838774272,Equity
+ETN,128182050816,Equity
+PLXS,3544861952,Equity
+TDS,3944744448,Equity
+PM,278041165824,Equity
+POWL,2141502080,Equity
+LLY,647949975552,Equity
+CASH,1818393600,Equity
+CNR,3755770880,Equity
+CENTA,2089105920,Equity
+AEO,1958760832,Equity
+MAR,72817983488,Equity
+GL,10066931712,Equity
+HUBB,21179047936,Equity
+HLIT,1028051776,Equity
+ADNT,1298056448,Equity
+AIR,2235547136,Equity
+ORLY,78142013440,Equity
+CENT,2090861568,Equity
+ICE,102197207040,Equity
+AMGN,150958260224,Equity
+HSIC,9160366080,Equity
+T,197408292864,Equity
+MPC,49115840512,Equity
+AVY,14134149120,Equity
+UAL,25263239168,Equity
+JPM,734791335936,Equity
+NATL,1950579072,Equity
+DORM,3894754816,Equity
+WEC,34010112000,Equity
+HMN,1777357056,Equity
+PRG,1154124416,Equity
+BLDR,12129020928,Equity
+INSP,4145220096,Equity
+XLI,19564161024,ETF
+PENN,2320145664,Equity
+KTOS,5766388736,Equity
+AVB,28682881024,Equity
+FICO,39002218496,Equity
+PANW,125251706880,Equity
+ACN,197880545280,Equity
+MDT,104804179968,Equity
+DNOW,1559767168,Equity
+AMCR,20965761024,Equity
+GTES,5503411200,Equity
+SJM,11969943552,Equity
+HPE,23283206144,Equity
+RTX,178710036480,Equity
+ABCB,4273853696,Equity
+EBAY,33484926976,Equity
+OFG,1866139264,Equity
+HRMY,1939218688,Equity
+WLY,2189556480,Equity
+ARWR,2192337408,Equity
+PEP,180674052096,Equity
+LHX,45895241728,Equity
+LMAT,1835794944,Equity
+NEE,139513348096,Equity
+NMIH,3049136640,Equity
+ETR,36894052352,Equity
+NEM,58760830976,Equity
+ANIP,1261393024,Equity
+DRI,25047660544,Equity
+GOOGL,2102299066368,Equity
+BAC,333058211840,Equity
+NFLX,514255749120,Equity
+PINC,1909656192,Equity
+ON,18077704192,Equity
+DUK,89874300928,Equity
+GFS,20597274624,Equity
+INCY,12587856896,Equity
+CSCO,251420803072,Equity
+ESE,4706772992,Equity
+WM,95773106176,Equity
+PRU,37029134336,Equity
+PRA,1183041280,Equity
+GKOS,5445489664,Equity
+TRIP,1720009984,Equity
+DE,138223009792,Equity
+MMSI,5634546176,Equity
+XOM,442427670528,Equity
+WSM,20613650432,Equity
+EXPI,1210309632,Equity
+SANM,4574630400,Equity
+ARCB,1478193024,Equity
+FANG,40216924160,Equity
+XYL,30762002432,Equity
+MCW,2325761280,Equity
+ALG,2415642368,Equity
+INVA,1208422656,Equity
+VBTX,1329923072,Equity
+ED,37391519744,Equity
+IAC,2942968832,Equity
+MTX,1882988800,Equity
+TRV,62127480832,Equity
+UNIT,1066493184,Equity
+AAT,1530862720,Equity
+RVTY,10836378624,Equity
+RHI,4705673728,Equity
+SDGR,1571733120,Equity
+JBGS,1301495296,Equity
+KLG,1494070016,Equity
+MSGS,4543169536,Equity
+GS,188406513664,Equity
+CURB,2377859072,Equity
+PHIN,1763940736,Equity
+FELE,3915091968,Equity
+MAA,18443517952,Equity
+AKR,2645913600,Equity
+PFS,2184635136,Equity
+XEL,40038748160,Equity
+AMD,184945000448,Equity
+PAYO,2455746048,Equity
+VRTX,115389800448,Equity
+NSIT,4333295104,Equity
+DV,2185665536,Equity
+AZZ,2689337344,Equity
+JNPR,12037788672,Equity
+AFL,55781048320,Equity
+SLVM,2246264064,Equity
+TECH,7422917632,Equity
+PATK,2930237184,Equity
+FE,24067403776,Equity
+AKAM,10968412160,Equity
+CCEP,40714878976,Equity
+ROL,27668441088,Equity
+OMCL,1381651968,Equity
+VCEL,2129005568,Equity
+AMT,99039272960,Equity
+COR,56660279296,Equity
+BXP,11805548544,Equity
+OUT,2729989120,Equity
+SFBS,4071878144,Equity
+RHP,6076102144,Equity
+GEHC,32399943680,Equity
+APA,6273290240,Equity
+APTV,14876401664,Equity
+NEOG,1309824256,Equity
+SYY,35159060480,Equity
+ROG,1251542144,Equity
+AMAT,129820098560,Equity
+MCK,89978748928,Equity
+NTAP,20670720000,Equity
+KMI,62626541568,Equity
+TKO,12947987456,Equity
+DD,28681830400,Equity
+TTMI,3032639232,Equity
+MBC,1273716864,Equity
+K,28610324480,Equity
+MTRN,1633298176,Equity
+WD,2335888128,Equity
+KN,1437261824,Equity
+MRNA,10268000256,Equity
+RUN,1509150080,Equity
+IFF,19473291264,Equity
+ODFL,34738130944,Equity
+NOC,68535635968,Equity
+STZ,32623622144,Equity
+ULTA,19038418944,Equity
+UPS,82475753472,Equity
+KRYS,3661754368,Equity
+CVX,237843824640,Equity
+CPRX,3009733120,Equity
+GPI,5569164288,Equity
+TPL,28300814336,Equity
+MMM,80250863616,Equity
+CAG,10955457536,Equity
+CMS,20738267136,Equity
+FSLR,16649824256,Equity
+NUE,25342228480,Equity
+AZTA,1252995840,Equity
+CCS,1627222784,Equity
+DECK,15599624192,Equity
+DCOM,1121318016,Equity
+KLAC,104215166976,Equity
+LZB,1759728640,Equity
+MODG,1143856128,Equity
+MCHP,31360655360,Equity
+ACAD,3717109760,Equity
+PJT,5989798912,Equity
+XLY,25995089920,ETF
+GO,1362190848,Equity
+BBY,15262560256,Equity
+MPW,2754668032,Equity
+HCC,2476594176,Equity
+TGI,1991944576,Equity
+CBRE,36722061312,Equity
+IP,25650759680,Equity
+HIW,3248277504,Equity
+GPC,17710991360,Equity
+HCSG,1030339840,Equity
+CUBI,1628667008,Equity
+KKR,111441543168,Equity
+STE,24114675712,Equity
+BCPC,5443337728,Equity
+KMT,1646645760,Equity
+PLAB,1127584512,Equity
+PIPR,4169696000,Equity
+FFIV,16374609920,Equity
+CNC,28236482560,Equity
+CSGS,1907549440,Equity
+INTC,89508241408,Equity
+PRGS,2646744320,Equity
+CRVL,5713278976,Equity
+TSLA,1163346313216,Equity
+BANR,2137389824,Equity
+ACLS,1899255040,Equity
+TFIN,1378694272,Equity
+YOU,3258076160,Equity
+EIG,1172460032,Equity
+POOL,11269912576,Equity
+EVTC,2325731584,Equity
+UPBD,1323047424,Equity
+PRVA,2785262336,Equity
+UNFI,1836906496,Equity
+BMI,7297938432,Equity
+CAKE,2720077568,Equity
+WDAY,63783092224,Equity
+REGN,64890740736,Equity
+LUV,18754289664,Equity
+EXPD,15468275712,Equity
+MGM,8666584064,Equity
+HP,1515108992,Equity
+SEE,4798339072,Equity
+RES,1002467904,Equity
+SEM,1919730048,Equity
+COP,107266981888,Equity
+CHEF,2594386688,Equity
+SBAC,24536678400,Equity
+AX,3988960768,Equity
+GOLF,4107470336,Equity
+CVBF,2627941120,Equity
+SYF,22220851200,Equity
+ADUS,2113136640,Equity
+CAT,164913594368,Equity
+NWL,2226254848,Equity
+AEP,54760333312,Equity
+TMUS,274980438016,Equity
+WAT,21282834432,Equity
+PSMT,3277003008,Equity
+TXN,167535853568,Equity
+STRL,5761001984,Equity
+FTV,24389931008,Equity
+LTC,1622039040,Equity
+NWSA,16763156480,Equity
+TYL,24938102784,Equity
+CVI,2339858944,Equity
+ESS,19074607104,Equity
+DOW,20308146176,Equity
+KR,45297979392,Equity
+ANSS,30577217536,Equity
+GMS,2910469632,Equity
+LNN,1510793472,Equity
+ESI,5276887040,Equity
+PFBC,1041067008,Equity
+FCX,56047706112,Equity
+PTEN,2219425280,Equity
+BX,168068743168,Equity
+SXT,4037648128,Equity
+TSCO,26446526464,Equity
+CPK,2838478080,Equity
+PI,3371603968,Equity
+SABR,1027688640,Equity
+PZZA,1414587008,Equity
+REG,13057545216,Equity
+WBD,24159295488,Equity
+PARA,8520780288,Equity
+ERIE,18420946944,Equity
+PNR,16359742464,Equity
+SNDR,4108416768,Equity
+SNDK,5522814976,Equity
+URBN,6708108800,Equity
+PBI,1867812096,Equity
+ELV,86518423552,Equity
+NBHC,1397679872,Equity
+OXY,40792313856,Equity
+HAL,17185701888,Equity
+FOXF,1039473024,Equity
+CARR,61361963008,Equity
+PAYX,57144299520,Equity
+HWM,68753752064,Equity
+JKHY,13450936320,Equity
+ALL,54686240768,Equity
+AON,78402420736,Equity
+LGIH,1222651136,Equity
+GTY,1601716480,Equity
+SUPN,1823581312,Equity
+SFNC,2389309440,Equity
+KDP,44575793152,Equity
+MKTX,8124180480,Equity
+DFH,1948262144,Equity
+INSW,1801337600,Equity
+LEG,1208871936,Equity
+UNF,3480640256,Equity
+CBU,2974482432,Equity
+FUN,3519325952,Equity
+LNT,15874936832,Equity
+WSC,5106919936,Equity
+XLE,15329646592,ETF
+APO,75657232384,Equity
+TBBK,2410337280,Equity
+ZD,1355220736,Equity
+TROW,20953153536,Equity
+QCOM,162668691456,Equity
+ARLO,1390743424,Equity
+FDX,52203831296,Equity
+TALO,1430316928,Equity
+KMX,9732683776,Equity
+GIS,29493790720,Equity
+IART,1007151488,Equity
+BXMT,3263451648,Equity
+TSN,19867168768,Equity
+BOX,5316048384,Equity
+TGNA,2713149696,Equity
+CTRA,18788050944,Equity
+FTNT,80139051008,Equity
+NBTB,2212049664,Equity
+CSX,59315216384,Equity
+VRTS,1188892288,Equity
+SPNT,2283978496,Equity
+CNS,3962613504,Equity
+CI,84077920256,Equity
+UNP,133822668800,Equity
+SMTC,3121019392,Equity
+BKE,2206158592,Equity
+VYX,1533179776,Equity
+ADI,107675885568,Equity
+INVH,20389748736,Equity
+WST,15231224832,Equity
+WY,18646769664,Equity
+CTVA,48052056064,Equity
+EL,23970275328,Equity
+WDC,18209687552,Equity
+EOG,60456824832,Equity
+V,687217836032,Equity
+SCL,1260213376,Equity
+BCC,3324772352,Equity
+CHCO,1722838144,Equity
+BG,10681164800,Equity
+MDU,3459323904,Equity
+VICI,33307500544,Equity
+INTU,211068043264,Equity
+PCAR,49868480512,Equity
+BMY,95597879296,Equity
+FI,87240187904,Equity
+ALB,6889639936,Equity
+TRNO,5769144832,Equity
+AME,41500499968,Equity
+DOC,11984128000,Equity
+MKC,19213068288,Equity
+CDW,24349874176,Equity
+IBM,243093078016,Equity
+TFC,51916713984,Equity
+GILD,135327145984,Equity
+CVS,79658311680,Equity
+ABG,4500384256,Equity
+COST,452030889984,Equity
+ABBV,327499382784,Equity
+PNC,69283561472,Equity
+CFG,17364086784,Equity
+PAYC,14589198336,Equity
+HCI,1880773888,Equity
+TILE,1186280576,Equity
+CVCO,3565814784,Equity
+GRBK,2588576768,Equity
+SPGI,157447995392,Equity
+SAFT,1237956096,Equity
+PLUS,1838307328,Equity
+TGTX,5619927552,Equity
+VLTO,25074857984,Equity
+EQR,26862350336,Equity
+RMD,36067311616,Equity
+FUL,3028293632,Equity
+BWA,7361718784,Equity
+IPAR,4286626560,Equity
+RXO,2545615360,Equity
+NRG,30689204224,Equity
+CHRW,11466445824,Equity
+EW,45194596352,Equity
+OMC,14542632960,Equity
+BLK,151361159168,Equity
+BEN,11616641024,Equity
+NTCT,1670874880,Equity
+VZ,182458236928,Equity
+JCI,66173202432,Equity
+WKC,1573955840,Equity
+A,31632177152,Equity
+FSS,5762770944,Equity
+PEB,1094275712,Equity
+FOX,23983855616,Equity
+CE,5945176576,Equity
+LDOS,19524741120,Equity
+SIG,2767147520,Equity
+GWW,52305563648,Equity
+XLB,6238301696,ETF
+VIRT,6356041728,Equity
+CTS,1215838720,Equity
+CNMD,1761872640,Equity
+ARM,142525874176,Equity
+MNST,62449881088,Equity
+OI,2040268800,Equity
+BR,28147658752,Equity
+CRL,6734253568,Equity
+EXC,44071464960,Equity
+MGY,4236308736,Equity
+PCG,37503414272,Equity
+MGEE,3272468480,Equity
+IPG,9038172160,Equity
+EMR,67663122432,Equity
+TMO,152443404288,Equity
+APLE,2790660608,Equity
+TNC,1381291776,Equity
+LMT,111321063424,Equity
+FBNC,1725979648,Equity
+HAS,9372514304,Equity
+VSCO,1688994048,Equity
+PWR,50288365568,Equity
+EYE,1492533760,Equity
+ALRM,2841511680,Equity
+CRC,3824269824,Equity
+CPRT,50942083072,Equity
+CALM,4593361408,Equity
+BANC,2179313920,Equity
+EXPE,21024542720,Equity
+FAST,47713710080,Equity
+TRGP,34921713664,Equity
+AVGO,1103735816192,Equity
+SOLV,12521381888,Equity
+UBER,186981974016,Equity
+PPG,25364457472,Equity
+DELL,77738786816,Equity
+PYPL,69283250176,Equity
+KFY,3521734144,Equity
+AIN,2021226880,Equity
+DXPE,1329150336,Equity
+MU,107191730176,Equity
+TRUP,2018748928,Equity
+EPAM,10021862400,Equity
+DAN,2479020544,Equity
+KLIC,1710253056,Equity
+WT,1407086720,Equity
+ALLE,12361842688,Equity
+DASH,88100618240,Equity
+TMDX,4334448128,Equity
+DVN,19937204224,Equity
+HWKN,2766400000,Equity
+TEAM,55446515712,Equity
+WAFD,2293329152,Equity
+MHK,6407531520,Equity
+HTH,1909900288,Equity
+PGNY,1770505344,Equity
+DOCN,2578141696,Equity
+PSX,46208000000,Equity
+APP,127849381888,Equity
+HLT,59969331200,Equity
+AROC,4472737280,Equity
+MS,205360988160,Equity
+SHOP,138101276672,Equity
+SONO,1252507392,Equity
+TNDM,1439714560,Equity
+DIS,200772714496,Equity
+DAY,9253112832,Equity
+PODD,22835247104,Equity
+ZBH,18424594432,Equity
+DTE,28227362816,Equity
+MRVL,56295862272,Equity
+DLTR,18852376576,Equity
+AMTM,5073458176,Equity
+TJX,142190592000,Equity
+EXR,32698562560,Equity
+BFS,1130020864,Equity
+ATGE,4693992960,Equity
+WMB,73907740672,Equity
+EFX,32069423104,Equity
+TPR,16688930816,Equity
+GBX,1423509248,Equity
+QRVO,7116892672,Equity
+SKT,3323920384,Equity
+WOR,2953101568,Equity
+FDS,17582409728,Equity
+MET,52764020736,Equity
+ITGR,4183201792,Equity
+RAMP,2101185024,Equity
+FORM,2434849792,Equity
+CSR,1093938432,Equity
+OII,1933938944,Equity
+DFIN,1524832512,Equity
+EVRG,15121581056,Equity
+HES,40863981568,Equity
+SBUX,98321326080,Equity
+MTB,29432213504,Equity
+VECO,1146607616,Equity
+CSGP,31531833344,Equity
+PNW,10870084608,Equity
+FBK,2016454912,Equity
+CCOI,2365723648,Equity
+STEL,1403159424,Equity
+GOGO,1427128576,Equity
+GRMN,39201345536,Equity
+SPXC,7118288896,Equity
+LYB,18562457600,Equity
+ASML,293991710720,Equity
+SMPL,3486130944,Equity
+CRK,7027103232,Equity
+NCLH,7915186176,Equity
+BDX,50060210176,Equity
+FCPT,2716762880,Equity
+MRP,4621551616,Equity
+TT,96563445760,Equity
+SWK,10363450368,Equity
+XLF,44803911680,ETF
+AWK,27740456960,Equity
+HON,145350361088,Equity
+SLG,4314596864,Equity
+ABM,3248167936,Equity
+PG,394234363904,Equity
+SHOO,1876339200,Equity
+TR,2430578688,Equity
+XHR,1259932416,Equity
+CRI,1199644288,Equity
+DDOG,40509906944,Equity
+IBP,4371103744,Equity
+RL,17182027776,Equity
+CBRL,1325123584,Equity
+LKQ,10501460992,Equity
+FITB,25364695040,Equity
+NWS,16920054784,Equity
+CNP,24372862976,Equity
+TXT,13470917632,Equity
+SW,22900709376,Equity
+EFC,1212130560,Equity
+LEN,27792928768,Equity
+ACGL,35294425088,Equity
+VST,55441756160,Equity
+GDYN,1084155136,Equity
+APH,106632290304,Equity
+AGYS,2943077120,Equity
+DGX,19237500928,Equity
+BOH,2672363776,Equity
+EXE,27788808192,Equity
+EA,36873887744,Equity
+CMI,44789665792,Equity
+MMC,113729011712,Equity
+ZBRA,15002018816,Equity
+VMC,35328573440,Equity
+ABR,1874520832,Equity
+AXP,204978323456,Equity
+BLFS,1052529344,Equity
+PFE,133378768896,Equity
+MMI,1125458048,Equity
+GM,46624788480,Equity
+PCRX,1188988928,Equity
+AL,6481541632,Equity
+FCF,1640196608,Equity
+USB,67805462528,Equity
+VTR,29113233408,Equity
+JNJ,367623405568,Equity
+SAFE,1065449536,Equity
+KAI,3734078976,Equity
+ARI,1373461504,Equity
+PLMR,4318849024,Equity
+ZS,39206539264,Equity
+PPL,25500911616,Equity
+META,1618348605440,Equity
+HUM,27888531456,Equity
+UHS,12325515264,Equity
+AWR,3031990272,Equity
+MLKN,1134755584,Equity
+SYK,145895309312,Equity
+THS,1152409984,Equity
+CCI,43396100096,Equity
+PEG,39388405760,Equity
+AIZ,10115615744,Equity
+BHLB,1166599296,Equity
+CRGY,2763966720,Equity
+HUBG,2084759424,Equity
+LRN,6642308608,Equity
+ATEN,1245554560,Equity
+CL,75048943616,Equity
+MD,1147270528,Equity
+ALGN,12939260928,Equity
+WBA,9711006720,Equity
+AIG,47921840128,Equity
+CERT,1851089920,Equity
+CWK,2308244224,Equity
+CWEN,6087705600,Equity
+HST,10796284928,Equity
+AEIS,4399656960,Equity
+ANDE,1188709760,Equity
+PRK,2646144000,Equity
+KTB,3885686272,Equity
+VRRM,3815932928,Equity
+FBP,3291955712,Equity
+BTU,1716526080,Equity
+CME,103188807680,Equity
+RJF,29766932480,Equity
+DIOD,2127272192,Equity
+ISRG,197868224512,Equity
+MSCI,43709095936,Equity
+TRMK,2109761024,Equity
+YELP,2457294080,Equity
+LVS,28855152640,Equity
+CXW,2427673856,Equity
+WYNN,9575055360,Equity
+CATY,3049101312,Equity
+VLO,40112295936,Equity
+IRM,28687128576,Equity
+DGII,1210968960,Equity
+WERN,1634572800,Equity
+GVA,3972704512,Equity
+D,48105938944,Equity
+ETSY,5266241024,Equity
+EIX,21577566208,Equity
+NPO,3788052992,Equity
+WSFS,3025646336,Equity
+WWW,1398414208,Equity
+ADSK,64322560000,Equity
+AMP,49044930560,Equity
+FMC,5080673280,Equity
+CXM,2148879616,Equity
+DRH,1587999232,Equity
+SCHW,160293093376,Equity
+LCII,2253600256,Equity
+EQT,33654753280,Equity
+EPRT,6365840896,Equity
+BIIB,18864746496,Equity
+DY,6567809536,Equity
+FTDR,4015577088,Equity
+ACIW,4896732160,Equity
+EPAC,2342417152,Equity
+WRB,28000266240,Equity
+PBH,4190860544,Equity
+WFC,239898165248,Equity
+MSEX,1035249984,Equity
+SXI,1830230784,Equity
+KIM,14162443264,Equity
+OSIS,3766354432,Equity
+SBCF,2140176512,Equity
+SHAK,5396057600,Equity
+J,15375161344,Equity
+JBLU,1890403968,Equity
+DVA,10416778240,Equity
+HNI,2172148992,Equity
+AESI,2086693760,Equity
+AORT,1244786560,Equity
+LNC,5675198464,Equity
+MP,3133451520,Equity
+LYV,32957978624,Equity
+AZN,217476841472,Equity
+BKNG,178563268608,Equity
+BHE,1310811648,Equity
+COOP,8442233856,Equity
+LIN,218886651904,Equity
+ITRI,5221661184,Equity
+ADBE,175833071616,Equity
+IEX,13737786368,Equity
+KO,308142669824,Equity
+EQIX,85561303040,Equity
+PECO,4802271744,Equity
+AES,6902093312,Equity
+CSWI,5130550272,Equity
+KVUE,45252280320,Equity
+NOW,212175175680,Equity
+COO,15933572096,Equity
+BKR,36667658240,Equity
+SITM,4637809664,Equity
+GNRC,7413854720,Equity
+APAM,2898099712,Equity
+NAVI,1365019264,Equity
+LGND,1923631744,Equity
+FHB,2977026048,Equity
+LKFN,1540569856,Equity
+C,140490653696,Equity
+TPH,2706955776,Equity
+TAP,10875456512,Equity
+TGT,43716726784,Equity
+CINF,23228338176,Equity
+TDY,23250647040,Equity
+MELI,130095112192,Equity
+IR,33174745088,Equity
+L,18551894016,Equity
+AVAV,8163098112,Equity
+SNEX,4218567424,Equity
+MHO,2873098240,Equity
+NABL,1492628736,Equity
+MCO,86319857664,Equity
+XLV,26101145600,ETF
+UVV,1477745792,Equity
+DXC,2758868480,Equity
+ANET,116273078272,Equity
+INDB,2634675712,Equity
+NGVT,1592057472,Equity
+UNH,272767926272,Equity
+FRPT,3897641728,Equity
+SNPS,78236172288,Equity
+NOG,2710414336,Equity
+FOXA,24006117376,Equity
+STT,27634137088,Equity
+JOE,2548972288,Equity
+BANF,4120444928,Equity
+ENVA,2373698304,Equity
+CRWD,116471980032,Equity
+IIPR,1570868096,Equity
+PDD,141432635392,Equity
+ALEX,1277541120,Equity
+YUM,40140926976,Equity
+JJSF,2207420928,Equity
+IT,34005514240,Equity
+O,50491203584,Equity
+KAR,2442985984,Equity
+SM,2723051008,Equity
+UE,2431152128,Equity
+ECL,74682998784,Equity
+WMT,778966663168,Equity
+HASI,3079870720,Equity
+SHO,1804645504,Equity
+GNL,1732101888,Equity
+RSG,79525797888,Equity
+UDR,15155239936,Equity
+TRN,2106431488,Equity
+CNK,3813797888,Equity
+GOOG,2103629447168,Equity
+ROCK,1755858432,Equity
+MO,100351115264,Equity
+NDAQ,47597584384,Equity
+ENPH,5152499200,Equity
+CNXN,1689929728,Equity
+AAPL,2994104958976,Equity
+GIII,1234935680,Equity
+NSC,55109783552,Equity
+KHC,31624187904,Equity
+CARG,3133733632,Equity
+ES,23516313600,Equity
+URI,46491836416,Equity
+UFPT,1741741312,Equity
+NTRS,20660041728,Equity
+NKE,91599945728,Equity
+XLP,17282443264,ETF
+CLSK,2608789760,Equity
+SO,98037923840,Equity
+ADP,132224344064,Equity
+KWR,1967154688,Equity
+MLM,33817698304,Equity
+MRK,194466725888,Equity
+LH,20649207808,Equity
+AMR,1524555392,Equity
+CEG,96746586112,Equity
+WDFC,3278731776,Equity
+RNST,3364318208,Equity
+AZO,63225917440,Equity
+MCRI,1534557824,Equity
+STRA,2166472704,Equity
+PSA,52788944896,Equity
+MATX,3625041664,Equity
+ROST,46049943552,Equity
+SPSC,5480138752,Equity
+REZI,3065122560,Equity
+STLD,19045163008,Equity
+ELME,1393789184,Equity
+CBOE,24076658688,Equity
+NXPI,49793175552,Equity
+BGC,4518041088,Equity
+DHR,136270733312,Equity
+ICUI,3162383104,Equity
+SLB,45838073856,Equity
+JBL,17997463552,Equity
+MSI,70284156928,Equity
+SKY,3847801600,Equity
+ATO,24650708992,Equity
+KEY,17156939776,Equity
+AUB,4259793152,Equity
+DOV,24729790464,Equity
+TWO,1154001408,Equity
+QDEL,2117367040,Equity
+MWA,3868692992,Equity
+VSH,1939777792,Equity
+MPWR,32653201408,Equity
+NDSN,11213312000,Equity
+COF,122426392576,Equity
+ADMA,4748419072,Equity
+ADM,23301824512,Equity
+MSTR,99979067392,Equity
+ABT,231224721408,Equity
+PTC,20393560064,Equity
+RF,19398819840,Equity
+ECG,2967666688,Equity
+NWBI,1569433344,Equity
+IQV,23962228736,Equity
+BRC,3317769984,Equity
+TER,12959529984,Equity
+EPC,1322475264,Equity
+LOW,126166122496,Equity
+AOS,9322349568,Equity
+BALL,14811345920,Equity
+VSAT,1160788736,Equity
+PARR,1121325312,Equity
+CF,14791513088,Equity
+HAYW,3023706112,Equity
+AGO,4162549760,Equity
+BFH,2399399936,Equity
+JXN,5945111552,Equity
+VRE,1641278080,Equity
+XLK,63068024832,ETF
+DG,21825341440,Equity
+F,40819286016,Equity
+CPAY,23213475840,Equity
+CRM,262679986176,Equity
+CMG,67785682944,Equity
+PLTR,294493159424,Equity
+GEN,17496688640,Equity
+DVAX,1171390208,Equity
+XLU,13244787712,ETF
+GLW,42463834112,Equity
+DPZ,16675781632,Equity
+AMPH,1189319424,Equity
+HD,366630207488,Equity
+FIS,42152443904,Equity
+ARR,1323115648,Equity
+PGR,162806136832,Equity
+MA,521089253376,Equity
+HI,1386885120,Equity
+CHTR,56491970560,Equity
+CB,116150796288,Equity
+FL,2268321536,Equity
+CLX,16195443712,Equity
+HPQ,26298114048,Equity
+LBRT,1902959488,Equity
+MDLZ,86681722880,Equity
+TTD,37474680832,Equity
+LUMN,4052446976,Equity
+AAP,3140101632,Equity
+RDN,4590192640,Equity
+MTCH,7550477824,Equity
+IDCC,5524516864,Equity
+WAB,34585419776,Equity
+OKE,50870030336,Equity
+DLR,58080043008,Equity
+TRMB,17092373504,Equity
+CHD,24317388800,Equity
+FRT,8259400704,Equity
+HBI,1798259456,Equity
+GD,74318848000,Equity
+LRCX,106972798976,Equity
+AEE,26029463552,Equity
+HTZ,2215161856,Equity
+HOPE,1306171136,Equity
+SNA,16896267264,Equity
+NI,18378598400,Equity
+MCD,225407008768,Equity
+BA,151675846656,Equity
+FIZZ,4118352640,Equity
+EG,14425006080,Equity
+SAH,2354176512,Equity
+HII,8921205760,Equity
+FULT,3153234176,Equity
+CC,1549874176,Equity
+RCL,68813299712,Equity
+OGN,2366899200,Equity
+ENR,1677722368,Equity
+CTSH,39676903424,Equity
+USPH,1142339840,Equity
+PPBI,2076575360,Equity
+ALKS,4948678656,Equity
+BAX,15733945344,Equity
+COIN,65064390656,Equity
+GFF,3219863552,Equity
+AHCO,1249618560,Equity
+EMN,9448091648,Equity
+CDNS,87557734400,Equity
+ZWS,6141197824,Equity
+PFG,17605720064,Equity
+MC,4278295040,Equity
+MTH,4623716864,Equity
+LW,7549706240,Equity
+ENOV,1878778752,Equity
+WHD,2855166208,Equity
+HBAN,22777225216,Equity
+VRSK,44195651584,Equity
+STBA,1410746752,Equity
+NVEE,1462900480,Equity
+SMCI,24570994688,Equity
+NWN,1657538944,Equity
+VIAV,2052664064,Equity
+IDXX,41135804416,Equity
+STX,24939741184,Equity
+SWKS,10536052736,Equity
+WTW,31023972352,Equity
+DHI,36493103104,Equity
+JBHT,13870877696,Equity
+ITW,71936286720,Equity
+DXCM,34070177792,Equity
+NVR,20741064704,Equity
+PRDO,2116167168,Equity
+CORT,8237045760,Equity
+MYRG,2474644736,Equity
+EAT,7370453504,Equity
+EXTR,2142673152,Equity
+MARA,5354584576,Equity
+CZR,5783589888,Equity
+TFX,5401663488,Equity
+TTWO,41553760256,Equity
+KALU,1166670848,Equity
+AXON,58513436672,Equity
+HIG,36920606720,Equity
+LII,20333856768,Equity
+ACA,4220640000,Equity
+MAS,13367394304,Equity
+SPG,60296986624,Equity
+GE,259943219200,Equity

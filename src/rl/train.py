@@ -1,222 +1,243 @@
 #!/usr/bin/env python3
 """
-Walk‐forward RL training with Sortino‐penalty, regime overlay, and rolling train/eval windows.
+Walk‐forward RL training with Sortino‐penalty, regime overlay, macro features, and ensemble across folds.
 
 Run from src/rl:
-    python train.py
-
-This will:
-  - Read your full prices CSV
-  - Split into multiple overlapping train/eval folds based on --eval-pct
-  - For each fold:
-      • Slice out train & eval price CSVs
-      • Instantiate PairsEnv with beta, trend_weight, sortino parameters
-      • Train PPO with early stopping on eval reward
-      • Save best and final models under models/fold_<i>/
-  - Produce walkforward_summary.csv listing each fold's OOS mean reward
+    python train.py --prices path/to/prices.csv --pairs path/to/pair_candidates.csv \
+         --timesteps 300000 --eval-pct 0.2 \
+         --beta 0.1 --trend-weight 0.5 --sortino-window 252 --sortino-lambda 5.0 \
+         --lambda-dd 0.5 --gamma-vol 0.1
 """
-import argparse
 import os
-import sys
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+
+import argparse
 from pathlib import Path
 import tempfile
 import pandas as pd
+import numpy as np
 
-# Ensure environment.py is on PYTHONPATH when running "python train.py" from src/rl
 from stable_baselines3 import PPO
-from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.vec_env import DummyVecEnv, VecNormalize
 from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.callbacks import EvalCallback, StopTrainingOnNoModelImprovement, CallbackList
-
+from stable_baselines3.common.callbacks import (
+    EvalCallback,
+    StopTrainingOnNoModelImprovement,
+    CallbackList
+)
 from environment import PairsEnv
 
+
 def parse_args():
-    p = argparse.ArgumentParser("Walk‐forward RL training for pairs trading")
-    p.add_argument("--prices",
-        default="../data/preprocessed/prices.csv",
-        help="Full preprocessed prices CSV (relative to src/rl)"
-    )
-    p.add_argument("--pairs",
-        default="../pairing/pair_candidates.csv",
-        help="Pair candidates CSV (relative to src/rl)"
-    )
-    p.add_argument("--model-dir",
-        default="models",
-        help="Directory under src/rl in which to save fold models"
-    )
-    p.add_argument("--timesteps",    type=int, default=200_000,
-        help="PPO timesteps per fold"
-    )
-    p.add_argument("--eval-episodes", type=int, default=5,
-        help="Number of episodes per evaluation"
-    )
-    p.add_argument("--eval-pct", type=float, default=0.2,
-        help="Fraction of the data reserved for each out‐of‐sample eval window"
-    )
+    p = argparse.ArgumentParser("Walk‐forward RL training with macro features and ensemble")
+    p.add_argument("--prices",        required=False,
+                   default="../data/preprocessed/prices.csv",
+                   help="Full preprocessed prices CSV")
+    p.add_argument("--pairs",         required=False,
+                   default="../pairing/pair_candidates.csv",
+                   help="Pair candidates CSV")
+    p.add_argument("--model-dir",     default="models", help="Directory to save fold models")
+    p.add_argument("--timesteps",     type=int,   default=300_000, help="PPO timesteps per fold")
+    p.add_argument("--eval-episodes", type=int,   default=5,      help="Eval episodes per fold")
+    p.add_argument("--eval-pct",      type=float, default=0.2,    help="Fraction reserved for OOS eval")
 
-    # Regime / market‐overlay parameters
-    p.add_argument("--beta",         type=float, default=0.1,
-        help="Weight on SPY return in reward (positive to penalize, negative to reward)"
-    )
-    p.add_argument("--trend-weight", type=float, default=0.5,
-        help="Position‐sizing scale when SPY trend is strong"
-    )
+    # Regime overlay
+    p.add_argument("--beta",          type=float, default=0.2,  help="SPY return weight (beta_spy)")
+    p.add_argument("--trend-weight",  type=float, default=0.7,  help="SPY trend position sizing")
 
-    # Sortino‐style penalty parameters
-    p.add_argument("--sortino-window", type=int,   default=252,
-        help="Lookback (days) for downside deviation"
-    )
-    p.add_argument("--sortino-lambda", type=float, default=5.0,
-        help="Multiplier λ for downside deviation in reward"
-    )
+    # Sortino penalty (currently not used directly in PairsEnv, included for future extension)
+    p.add_argument("--sortino-window", type=int,   default=252, help="Lookback for downside dev")
+    p.add_argument("--sortino-lambda", type=float, default=3.0, help="Sortino penalty lambda")
 
-    # PPO hyperparameters
-    p.add_argument("--lr",         type=float, default=3e-4, help="Learning rate")
-    p.add_argument("--gamma",      type=float, default=0.99, help="Discount factor")
-    p.add_argument("--clip-range", type=float, default=0.2,  help="PPO clip range")
-    p.add_argument("--ent-coef",   type=float, default=0.0,  help="Entropy coefficient")
-    p.add_argument("--h1",         type=int,   default=64,   help="Hidden layer 1 size")
-    p.add_argument("--h2",         type=int,   default=64,   help="Hidden layer 2 size")
+    # Macro feature penalties
+    p.add_argument("--lambda-dd",    type=float, default=0.5, help="Drawdown penalty weight")
+    p.add_argument("--gamma-vol",    type=float, default=0.1, help="Volatility penalty weight")
 
+    # PPO hyperparameters (adjusted)
+    p.add_argument("--lr",            type=float, default=3e-5,  help="Learning rate")
+    p.add_argument("--n-steps",       type=int,   default=1024,  help="Steps per env update")
+    p.add_argument("--batch-size",    type=int,   default=128,   help="Minibatch size")
+    p.add_argument("--gamma",         type=float, default=0.99,  help="Discount factor")
+    p.add_argument("--gae-lambda",    type=float, default=0.95,  help="GAE lambda")
+    p.add_argument("--clip-range",    type=float, default=0.1,   help="PPO clip range")
+    p.add_argument("--ent-coef",      type=float, default=0.005, help="Entropy coefficient")
+    p.add_argument("--vf-coef",       type=float, default=0.5,   help="Value function coefficient")
+    p.add_argument("--max-grad-norm", type=float, default=0.3,   help="Max gradient norm")
+    p.add_argument("--weight-decay",  type=float, default=1e-5,  help="Weight decay (AdamW)")
+    p.add_argument("--h1",            type=int,   default=64,    help="Hidden layer1 size")
+    p.add_argument("--h2",            type=int,   default=64,    help="Hidden layer2 size")
     return p.parse_args()
 
 
-def slice_fold_prices(prices_csv: str, start_idx: int, end_idx: int, dates: pd.DatetimeIndex) -> str:
-    """
-    Given the full dates index and start/end positions, slice the main CSV
-    and write that subrange to a temp CSV, returning its path.
-    """
+def slice_fold(prices_csv: str, dates: pd.DatetimeIndex, start_idx: int, end_idx: int) -> str:
     df = pd.read_csv(prices_csv, index_col=0, parse_dates=True)
-    df.index = df.index.normalize().sort_values()
-    start_date = dates[start_idx]
-    end_date   = dates[end_idx]
-    sub = df.loc[start_date : end_date]
-    if sub.empty:
-        raise ValueError(f"No data in slice {start_date.date()}–{end_date.date()}")
-    out = Path(tempfile.gettempdir()) / f"prices_{start_date.date()}_{end_date.date()}.csv"
-    sub.to_csv(out)
+    df = df.sort_index().loc[dates[start_idx]:dates[end_idx]]
+    if df.empty:
+        raise ValueError(f"Slice {dates[start_idx].date()}–{dates[end_idx].date()} empty")
+    out = Path(tempfile.gettempdir()) / f"prices_{dates[start_idx].date()}_{dates[end_idx].date()}.csv"
+    df.to_csv(out)
     return str(out)
 
 
 def main():
     args = parse_args()
-    # prepare model root
-    base_dir = Path(args.model_dir)
-    base_dir.mkdir(exist_ok=True, parents=True)
+    base = Path(args.model_dir)
+    base.mkdir(parents=True, exist_ok=True)
 
-    # load full date index
-    full = pd.read_csv(args.prices, index_col=0, parse_dates=True)
-    dates = full.index.normalize().sort_values()
+    # Load and validate data
+    full = pd.read_csv(args.prices, index_col=0, parse_dates=True).sort_index()
+    dates = full.index.normalize().unique()
     n = len(dates)
-    if n < 2:
-        raise RuntimeError("Not enough dates in prices CSV")
 
-    # compute train/eval window lengths
-    eval_len  = max(1, int(n * args.eval_pct))
+    if n < 270:
+        raise ValueError(f"Insufficient data points: {n} < 270 (minimum required)")
+
+    eval_len = max(1, int(n * args.eval_pct))
     train_len = n - eval_len
-    if train_len < 1:
-        raise ValueError("eval-pct too large; train window < 1")
-
     step = eval_len
+
     metrics = []
+    fold_dirs = []
 
-    # walk‐forward folds
-    fold = 0
-    for start in range(0, n - train_len - eval_len + 1, step):
-        # train: [start, start+train_len-1], eval: [start+train_len, start+train_len+eval_len-1]
-        ts_idx = start
+    last_start = n - (train_len + eval_len)
+    if last_start < 0:
+        last_start = 0
+
+    for fold, start in enumerate(range(0, last_start + 1, step)):
         te_idx = start + train_len - 1
-        es_idx = start + train_len
-        ee_idx = start + train_len + eval_len - 1
+        ee_idx = te_idx + eval_len
+        if ee_idx >= n:
+            break
 
-        ts_date, te_date = dates[ts_idx].date(), dates[te_idx].date()
-        es_date, ee_date = dates[es_idx].date(), dates[ee_idx].date()
-        print(f"\n=== Fold {fold}: TRAIN {ts_date}→{te_date}, EVAL {es_date}→{ee_date} ===")
+        ts, te = dates[start], dates[te_idx]
+        es, ee = dates[te_idx + 1], dates[ee_idx]
+        print(f"Fold {fold}: TRAIN {ts.date()}–{te.date()} | EVAL {es.date()}–{ee.date()}")
 
-        # slice out train & eval CSVs
-        train_csv = slice_fold_prices(args.prices, ts_idx, te_idx, dates)
-        eval_csv  = slice_fold_prices(args.prices, es_idx, ee_idx, dates)
+        train_csv = slice_fold(args.prices, dates, start, te_idx)
+        eval_csv = slice_fold(args.prices, dates, te_idx + 1, ee_idx)
 
-        # fold directory
-        fold_dir = base_dir / f"fold_{fold}"
-        fold_dir.mkdir(exist_ok=True, parents=True)
+        fold_dir = base / f"fold_{fold}"
+        fold_dir.mkdir(exist_ok=True)
+        fold_dirs.append(fold_dir)
 
-        # environments
-        train_env = DummyVecEnv([lambda: Monitor(
-            PairsEnv(
-                prices_csv=train_csv,
-                pairs_csv=args.pairs,
-                window_length=90,
-                trading_cost=0.0005
-            ),
-            filename=str(fold_dir / "train_monitor.csv")
-        )])
-        eval_env = DummyVecEnv([lambda: Monitor(
-            PairsEnv(
-                prices_csv=eval_csv,
-                pairs_csv=args.pairs,
-                window_length=90,
-                trading_cost=0.0005
-            ),
-            filename=str(fold_dir / "eval_monitor.csv")
-        )])
+        def make_env(csv_path, monitor_file):
+            return Monitor(
+                PairsEnv(
+                    prices_csv=csv_path,
+                    pairs_csv=args.pairs,
+                    regime_csv="../data/preprocessed/regime.csv",
+                    spx_csv="../data/preprocessed/SPX_returns.csv",
+                    window_length=90,
+                    trading_cost=0.0005,
+                    beta_spy=args.beta
+                ),
+                filename=str(monitor_file)
+            )
 
-        # early stopping callback
-        stop_cb = StopTrainingOnNoModelImprovement(
-            max_no_improvement_evals=3,
-            min_evals=5,
-            verbose=1
-        )
+        # Use 4 parallel envs for training
+        train_env = DummyVecEnv([
+            (lambda csv=train_csv, mon=fold_dir / f'train_monitor_{i}.csv': make_env(csv, mon))
+            for i in range(4)
+        ])
+        train_env = VecNormalize(train_env, norm_obs=True, norm_reward=True)
+
+        # Use 2 parallel envs for evaluation
+        eval_env = DummyVecEnv([
+            (lambda csv=eval_csv, mon=fold_dir / f'eval_monitor_{i}.csv': make_env(csv, mon))
+            for i in range(2)
+        ])
+        eval_env = VecNormalize(eval_env, norm_obs=True, norm_reward=True)
+        eval_env.training = False
+        eval_env.norm_reward = False
+
+        # callbacks
+        stop_cb = StopTrainingOnNoModelImprovement(max_no_improvement_evals=5, min_evals=10, verbose=1)
         eval_cb = EvalCallback(
             eval_env,
             best_model_save_path=str(fold_dir),
             log_path=str(fold_dir),
-            eval_freq=10_000,
+            eval_freq=50_000,
             n_eval_episodes=args.eval_episodes,
             deterministic=True,
-            render=False,
             callback_after_eval=stop_cb
         )
 
-        # instantiate PPO
         policy_kwargs = dict(net_arch=[args.h1, args.h2])
         model = PPO(
             "MlpPolicy",
             train_env,
-            learning_rate=args.lr,
+            learning_rate=lambda f: args.lr * (1 - 0.5 * f),
+            n_steps=args.n_steps,
+            batch_size=args.batch_size,
             gamma=args.gamma,
-            clip_range=args.clip_range,
+            gae_lambda=args.gae_lambda,
+            clip_range=lambda f: args.clip_range * (1 - 0.5 * f),
             ent_coef=args.ent_coef,
+            vf_coef=args.vf_coef,
+            max_grad_norm=args.max_grad_norm,
             policy_kwargs=policy_kwargs,
             verbose=1,
-            tensorboard_log=str(fold_dir / "tb_logs")
+            tensorboard_log=str(fold_dir / 'tb')
         )
-
-        # train
         model.learn(total_timesteps=args.timesteps, callback=CallbackList([eval_cb]))
-        model.save(str(fold_dir / "final_model"))
+        model.save(str(fold_dir / 'final_model'))
 
-        # record OOS performance
-        eval_df = pd.read_csv(fold_dir / "eval_monitor.csv", comment="#")
-        mean_oos = eval_df["r"].mean()
-        print(f"Fold {fold} mean OOS reward: {mean_oos:.4f}")
-        metrics.append({
-            "fold": fold,
-            "train_start": ts_date,
-            "train_end":   te_date,
-            "eval_start":  es_date,
-            "eval_end":    ee_date,
-            "mean_oos_reward": mean_oos
-        })
+        # parse evaluation metrics
+        try:
+            eval_files = list(fold_dir.glob('eval_monitor_*.csv'))
+            if eval_files:
+                all_rewards = []
+                for eval_file in eval_files:
+                    with open(eval_file, 'r') as f:
+                        lines = f.readlines()
+                    # Skip any line starting with '#' or 'r,' (header)
+                    data_lines = [l for l in lines if not l.startswith('#') and not l.startswith('r,')]
+                    if data_lines:
+                        rewards = []
+                        for line in data_lines:
+                            try:
+                                rewards.append(float(line.split(',')[0]))
+                            except ValueError:
+                                continue
+                        all_rewards.extend(rewards)
+                mean_oos = np.mean(all_rewards) if all_rewards else float('nan')
+            else:
+                print(f"Warning: No evaluation files found in {fold_dir}")
+                mean_oos = float('nan')
+        except Exception as e:
+            print(f"Warning: Could not read evaluation metrics: {e}")
+            mean_oos = float('nan')
 
-        fold += 1
+        metrics.append({"fold": fold, "mean_oos_reward": mean_oos})
 
     # summary
     summary = pd.DataFrame(metrics)
-    summary["overall_mean_oos"] = summary["mean_oos_reward"].mean()
-    summary.to_csv(base_dir / "walkforward_summary.csv", index=False)
-    print("\n=== Walk‐forward summary ===")
+    summary['overall_mean_oos'] = summary['mean_oos_reward'].mean()
+    summary.to_csv(base / 'walkforward_summary.csv', index=False)
     print(summary)
+
+    # ensemble on last eval window
+    if n > eval_len:
+        last_eval_csv = slice_fold(args.prices, dates, n - eval_len, n - 1)
+        env = DummyVecEnv([
+            (lambda csv=last_eval_csv, mon=Path(tempfile.gettempdir()) / f'ensemble_{i}.csv': make_env(csv, mon))
+            for i in range(2)
+        ])
+        obs = env.reset()
+        done = [False] * len(env.envs)
+        models = [PPO.load(str(d / 'final_model')) for d in fold_dirs]
+        total_reward = 0.0
+
+        while not all(done):
+            actions = [m.predict(obs, deterministic=True)[0] for m in models]
+            if isinstance(actions[0], np.ndarray):
+                action = np.sign(np.mean(actions, axis=0))
+            else:
+                action = max(set(actions), key=actions.count)
+            obs, reward, done, _ = env.step(action)
+            total_reward += np.mean(reward)  # Average reward across parallel envs
+        print(f"Ensemble reward on last window: {total_reward}")
+
 
 if __name__ == "__main__":
     main()
